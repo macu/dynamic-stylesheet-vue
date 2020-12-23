@@ -1,5 +1,5 @@
 {
-  "name": "dynamic-stylesheet-vue",
+  "name": "@macu/dynamic-stylesheet-vue",
   "version": "1.0.1",
   "description": "Dynamically render a document stylesheet through a Vue component",
   "main": "build/index.js",
