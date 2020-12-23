@@ -1,0 +1,35 @@
+{
+  "name": "dynamic-stylesheet-vue",
+  "version": "1.0.0",
+  "description": "Dynamically render a document stylesheet through a Vue component",
+  "main": "build/index.js",
+  "scripts": {
+    "prod": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macu/dynamic-stylesheet-vue.git"
+  },
+  "keywords": [
+    "stylesheet",
+    "dynamic",
+    "javascript",
+    "css",
+    "vue"
+  ],
+  "author": "Matt Cudmore <cudmore.mb@gmail.com>",
+  "license": "The Unlicense",
+  "bugs": {
+    "url": "https://github.com/macu/dynamic-stylesheet-vue/issues"
+  },
+  "homepage": "https://github.com/macu/dynamic-stylesheet-vue#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0"
+  }
+}

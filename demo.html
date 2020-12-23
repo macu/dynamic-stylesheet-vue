@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Dynamic stylesheet demo</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"
+		integrity="sha512-YXLGLsQBiwHPHLCAA9npZWhADUsHECjkZ71D1uzT2Hpop82/eLnmFb6b0jo8pK4T0Au0g2FETrRJNblF/46ZzQ=="
+		crossorigin="anonymous"></script>
+
+	<script src="build/index.js"></script>
+
+</head>
+<body>
+
+	<div class="app">
+
+		<header>
+			<h1>Demo</h1>
+		</header>
+
+		<p class="demo">If this text is coloured, a dynamic stylesheet has been rendered.</p>
+
+		<p>
+			<button @click="color='orange'">Set orange</button>
+			<button @click="color='blue'">Set blue</button>
+		</p>
+
+		<dynamic-stylesheet :rules="styleRules" :inner-markup-output="true">
+		</dynamic-stylesheet>
+
+	</div>
+
+<script>
+window.app = new Vue({
+	el: '.app',
+	data() {
+		return {
+			color: 'blue',
+		};
+	},
+	computed: {
+		styleRules: function() {
+			return {
+				'.app': {
+					'>header': {
+						'padding': '10px 0',
+						'background-color': 'pink',
+						'>h1': {
+							'color': 'red',
+						},
+					},
+					'p.demo': {
+						"color": this.color,
+					},
+				},
+			};
+		},
+	},
+});
+</script>
+
+</body>
+</html>

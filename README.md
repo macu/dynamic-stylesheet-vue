@@ -79,3 +79,13 @@ Rendered stylesheet:
 }
 </style>
 ```
+
+## Testing
+
+Build, start server, and access
+[http://localhost:8080/demo.html](http://localhost:8080/demo.html)
+
+```bash
+npm run prod
+python -m http.server 8080
+```
