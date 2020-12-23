@@ -1,6 +1,6 @@
 {
   "name": "dynamic-stylesheet-vue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dynamically render a document stylesheet through a Vue component",
   "main": "build/index.js",
   "scripts": {
@@ -23,6 +23,12 @@
     "url": "https://github.com/macu/dynamic-stylesheet-vue/issues"
   },
   "homepage": "https://github.com/macu/dynamic-stylesheet-vue#readme",
+  "files": [
+    "index.js",
+    "dynamic-stylesheet.js",
+    "dynamic-stylesheet.vue",
+    "build/**"
+  ],
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",

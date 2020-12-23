@@ -10,7 +10,7 @@ Make sure you sanitize all user-supplied input that is included in stylesheet ou
 
 | Prop | Description |
 | --- | --- |
-| rules | Object containing hierarchical CSS with selectors as keys to objects, and rules represented as `'propertyName': 'value'` entries. If a nested selector does not begin with a combinator (`>`, `+`, or `~`) or pseudo class/element syntax (`:`, `::`), it is rendered with a descendent combinator (` `). |
+| rules | Object containing hierarchical CSS with selectors as keys to objects, and rules represented as `'propertyName': 'value'` entries. If a nested selector does not begin with a combinator (`>`, `+`, or `~`) or pseudo class/element syntax (`:`, `::`), it is rendered with a descendent combinator (` `). Selectors also support the optional `&` cursor. |
 | inner-markup-output | Whether to render using `styleElement.innerHTML` instead of stylesheet API. |
 
 ## Usage
@@ -44,8 +44,9 @@ export default {
               'color': 'red',
             },
           },
-          'p': [
+          'p.demo': [
             'color: blue',
+            '&': ['font-weight: bold'],
           ],
         },
       };
@@ -74,8 +75,11 @@ Rendered stylesheet:
 .app>header>h1 {
 	color: red;
 }
-.app p {
+.app p.demo {
 	color: blue;
+}
+.app p.demo {
+	font-weight: bold;
 }
 </style>
 ```

@@ -50,7 +50,9 @@ export function addStylesheetRules(style, rules, selectors = [], index = 0) {
 					stringRules.push(key + ':' + rule + ';');
 				} else if (typeof rule === 'object') { // object or string
 					addStringRules();
-					if (['>', ':', '+', '~', ' '].indexOf(key.charAt(0)) < 0) {
+					if (key.charAt(0) === '&') {
+						key = key.substr(1);
+					} else if (['>', ':', '+', '~', ' '].indexOf(key.charAt(0)) < 0) {
 						key = ' ' + key; // descendent selector
 					}
 					added += addStylesheetRules(style, rule, selectors.concat([key]), index + added);
@@ -112,7 +114,9 @@ export function buildStylesheetCSS(rules, selectors = []) {
 					stringRules.push(key + ': ' + rule + ';');
 				} else if (typeof rule === 'object') { // object or string
 					addStringRules();
-					if (['>', ':', '+', '~', ' '].indexOf(key.charAt(0)) < 0) {
+					if (key.charAt(0) === '&') {
+						key = key.substr(1);
+					} else if (['>', ':', '+', '~', ' '].indexOf(key.charAt(0)) < 0) {
 						key = ' ' + key; // descendent selector
 					}
 					added += buildStylesheetCSS(rule, selectors.concat([key]));
