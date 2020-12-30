@@ -103,7 +103,7 @@ export function buildStylesheetCSS(rules, selectors = []) {
 				stringRules.push(rule);
 			} else if (typeof rule === 'object') { // object or array
 				addStringRules();
-				added += buildStylesheetCSS(rule, selectors);
+				added += buildStylesheetCSS(rule, selectors.concat(['']));
 			}
 		}
 	} else {

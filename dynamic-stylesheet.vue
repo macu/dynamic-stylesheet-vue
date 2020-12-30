@@ -7,7 +7,7 @@ import {addStylesheetRules, buildStylesheetCSS} from './dynamic-stylesheet.js';
 
 export default {
 	props: {
-		rules: Object,
+		rules: [Object, Array],
 		innerMarkupOutput: Boolean,
 	},
 	watch: {

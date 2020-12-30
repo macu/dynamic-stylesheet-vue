@@ -26,7 +26,10 @@
 			<button @click="color='blue'">Set blue</button>
 		</p>
 
-		<dynamic-stylesheet :rules="styleRules" :inner-markup-output="true">
+		<dynamic-stylesheet :rules="styleRules1" :inner-markup-output="true">
+		</dynamic-stylesheet>
+
+		<dynamic-stylesheet :rules="styleRules2" :inner-markup-output="true">
 		</dynamic-stylesheet>
 
 	</div>
@@ -40,7 +43,7 @@ window.app = new Vue({
 		};
 	},
 	computed: {
-		styleRules: function() {
+		styleRules1: function() {
 			return {
 				'.app': {
 					'>header': {
@@ -56,6 +59,12 @@ window.app = new Vue({
 					},
 				},
 			};
+		},
+		styleRules2: function() {
+			return [
+				{'.app h1': {'color': 'purple !important'}},
+				{'p.demo': {'text-decoration': 'underline wavy'}},
+			];
 		},
 	},
 });
