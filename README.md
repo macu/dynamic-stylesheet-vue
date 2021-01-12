@@ -15,6 +15,8 @@ Make sure you sanitize all user-supplied input that is included in stylesheet ou
 
 ## Usage
 
+[See demo](https://macu.github.io/dynamic-stylesheet-vue/demo.html)
+
 ```vue
 <template>
   <div class="app">
