@@ -10,8 +10,8 @@ Make sure you sanitize all user-supplied input that is included in stylesheet ou
 
 | Prop | Description |
 | --- | --- |
-| rules | Object containing hierarchical CSS with selectors as keys to objects, and rules represented as `'propertyName': 'value'` entries. If a nested selector does not begin with a combinator (`>`, `+`, or `~`) or pseudo class/element syntax (`:`, `::`), it is rendered with a descendent combinator (` `). Selectors cam also begin with the optional `&` cursor to append to the current selector target component (example below). Arrays are supported; entries may be either `'propertyName: value'` strings or nested objects. |
-| inner-markup-output | Whether to render using `styleElement.innerHTML` instead of stylesheet API. |
+| rules | Object containing hierarchical CSS with selectors as keys to objects, and rules represented as `'propertyName': 'value'` entries. If a nested selector does not begin with a combinator (`>`, `+`, or `~`) or pseudo class/element syntax (`:`, `::`), it is rendered with a descendent combinator (` `). Selectors can also begin with the optional `&` cursor to append to the current selector target component (example below). Arrays are supported; entries may be either `'propertyName: value'` strings or nested objects. |
+| inner-markup-output | Whether to render using `styleElement.innerHTML` instead of stylesheet API. This mode is used automatically when the stylesheet API is unavailable. |
 
 ## Usage
 
