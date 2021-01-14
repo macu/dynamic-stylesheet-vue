@@ -11,6 +11,11 @@ export function addStylesheetRules(style, rules, selectors = [], index = 0) {
 
 	let stringRules = [];
 	const addStringRules = () => {
+		let selector = selectors.join('').trim();
+		if (!selector) {
+			stringRules = [];
+			return;
+		}
 		for (let i = 0; i < stringRules.length; i++) {
 			let rule = stringRules[i].trim();
 			if (!rule || reCOMMENT.test(rule)) {
@@ -22,7 +27,6 @@ export function addStylesheetRules(style, rules, selectors = [], index = 0) {
 		}
 		stringRules = stringRules.join('');
 		if (stringRules) {
-			let selector = selectors.join('').trim();
 			// Thanks https://stackoverflow.com/a/22697964/1597274
 			if (!(style.sheet||{}).insertRule) {
 				(style.styleSheet || style.sheet).addRule(selector, stringRules, index + added);
@@ -77,23 +81,32 @@ export function buildStylesheetCSS(rules, selectors = []) {
 
 	let stringRules = [];
 	const addStringRules = () => {
-		let compiledStringRules = [];
-		for (let i = 0; i < stringRules.length; i++) {
-			let rule = stringRules[i].trim();
-			if (!rule) {
-				// Remove blank rules from output
-				continue;
+		let selector = selectors.join('').trim();
+		if (selector) {
+			let compiledStringRules = [];
+			for (let i = 0; i < stringRules.length; i++) {
+				let rule = stringRules[i].trim();
+				if (!rule) {
+					// Include empty lines in output
+					compiledStringRules.push(rule);
+				} else if (rule.charAt(rule.length - 1) === ';' || reCOMMENT.test(rule)) {
+					compiledStringRules.push(rule);
+				} else {
+					compiledStringRules.push(rule + ';');
+				}
 			}
-			if (rule.charAt(rule.length - 1) === ';' || reCOMMENT.test(rule)) {
-				compiledStringRules.push(rule);
-			} else {
-				compiledStringRules.push(rule + ';');
+			if (compiledStringRules.length) {
+				compiledStringRules = compiledStringRules.join('\n\t');
+				added += '\n' + selector + ' {\n\t' + compiledStringRules + '\n}';
 			}
-		}
-		if (compiledStringRules.length) {
-			compiledStringRules = compiledStringRules.join('\n\t');
-			let selector = selectors.join('').trim();
-			added += '\n' + selector + ' {\n\t' + compiledStringRules + '\n}';
+		} else {
+			// Output comments and empty lines only
+			for (let i = 0; i < stringRules.length; i++) {
+				let rule = stringRules[i].trim();
+				if (!rule || reCOMMENT.test(rule)) {
+					added += '\n' + rule;
+				}
+			}
 		}
 		stringRules = [];
 	};

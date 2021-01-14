@@ -44,8 +44,9 @@ window.app = new Vue({
 	},
 	computed: {
 		styleRules1: function() {
-			return {
-				'.app': {
+			return [
+				'/* comments appear in innerHTML output */',
+				{'.app': {
 					'>header': {
 						'padding': '10px 0',
 						'background-color': 'pink',
@@ -53,20 +54,25 @@ window.app = new Vue({
 							'color': 'red',
 						},
 					},
-					'p.demo': {
-						'color': this.color,
-						'&': [
-							'/* comments appear in innerHTML output */',
-							'font-weight: bold',
-						],
+					'p': {
+						'&.demo': {
+							'color': this.color,
+							'font-weight': 'bold',
+						},
 					},
-				},
-			};
+				}},
+			];
 		},
 		styleRules2: function() {
 			return [
-				{'.app h1': {'color': 'purple !important'}},
-				{'p.demo': {'text-decoration': 'underline wavy'}},
+				{'.app h1': [
+					'/* override header color at lower specificity */',
+					'color: purple !important',
+				]},
+				'',
+				{'p.demo': {
+					'text-decoration': 'underline wavy',
+				}},
 			];
 		},
 	},

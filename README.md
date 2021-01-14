@@ -46,9 +46,9 @@ export default {
               'color': 'red',
             },
           },
-          'p.demo': [
+          'p': [
             'color: blue',
-            '&': [
+            '&.demo': [
               '/* comments appear in innerHTML output */',
               'font-weight: bold',
             ],
@@ -80,7 +80,7 @@ Rendered stylesheet:
 .app>header>h1 {
 	color: red;
 }
-.app p.demo {
+.app p {
 	color: blue;
 }
 .app p.demo {
