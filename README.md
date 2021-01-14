@@ -29,7 +29,7 @@ Make sure you sanitize all user-supplied input that is included in stylesheet ou
 </template>
 
 <script>
-import DynamicStylesheet from './dynamic-stylesheet.vue';
+import DynamicStylesheet from '@macu/dynamic-stylesheet-vue';
 
 export default {
   components: {
@@ -48,7 +48,10 @@ export default {
           },
           'p.demo': [
             'color: blue',
-            '&': ['font-weight: bold'],
+            '&': [
+              '/* comments appear in innerHTML output */',
+              'font-weight: bold',
+            ],
           ],
         },
       };
@@ -81,6 +84,7 @@ Rendered stylesheet:
 	color: blue;
 }
 .app p.demo {
+	/* comments appear in innerHTML output */
 	font-weight: bold;
 }
 </style>

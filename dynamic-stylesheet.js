@@ -1,5 +1,7 @@
 // TODO handle media queries
 
+const reCOMMENT = /^\/\*(?:[^\*]|\*(?!\/))+\*\/$/;
+
 export function addStylesheetRules(style, rules, selectors = [], index = 0) {
 	if (!rules || typeof rules !== 'object') {
 		return 0;
@@ -11,7 +13,7 @@ export function addStylesheetRules(style, rules, selectors = [], index = 0) {
 	const addStringRules = () => {
 		for (let i = 0; i < stringRules.length; i++) {
 			let rule = stringRules[i].trim();
-			if (!rule) {
+			if (!rule || reCOMMENT.test(rule)) {
 				continue;
 			}
 			if (rule.charAt(rule.length - 1) !== ';') {
@@ -82,7 +84,7 @@ export function buildStylesheetCSS(rules, selectors = []) {
 				// Remove blank rules from output
 				continue;
 			}
-			if (rule.charAt(rule.length - 1) === ';') {
+			if (rule.charAt(rule.length - 1) === ';' || reCOMMENT.test(rule)) {
 				compiledStringRules.push(rule);
 			} else {
 				compiledStringRules.push(rule + ';');

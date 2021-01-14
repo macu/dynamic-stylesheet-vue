@@ -55,7 +55,10 @@ window.app = new Vue({
 					},
 					'p.demo': {
 						'color': this.color,
-						'&': ['font-weight: bold'],
+						'&': [
+							'/* comments appear in innerHTML output */',
+							'font-weight: bold',
+						],
 					},
 				},
 			};
