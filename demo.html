@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<div class="app">
+	<div id="app">
 
 		<header>
 			<h1>Demo</h1>
@@ -23,7 +23,7 @@
 
 		<p>
 			<button @click="color='orange'">Set orange</button>
-			<button @click="color='blue'">Set blue</button>
+			<button @click="color='red'">Set red</button>
 		</p>
 
 		<dynamic-stylesheet :rules="styleRules1" :inner-markup-output="true">
@@ -35,9 +35,10 @@
 	</div>
 
 <script>
+
 window.app = new Vue({
-	el: '.app',
-	data() {
+	el: '#app',
+	data: function() {
 		return {
 			color: 'blue',
 		};
@@ -46,7 +47,7 @@ window.app = new Vue({
 		styleRules1: function() {
 			return [
 				'/* comments appear in innerHTML output */',
-				{'.app': {
+				{'#app': {
 					'>header': {
 						'padding': '10px 0',
 						'background-color': 'pink',
@@ -65,7 +66,7 @@ window.app = new Vue({
 		},
 		styleRules2: function() {
 			return [
-				{'.app h1': [
+				{'#app h1': [
 					'/* override header color at lower specificity */',
 					'color: purple !important',
 				]},
@@ -77,6 +78,7 @@ window.app = new Vue({
 		},
 	},
 });
+
 </script>
 
 </body>

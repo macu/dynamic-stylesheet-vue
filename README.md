@@ -19,7 +19,7 @@ Make sure you sanitize all user-supplied input that is included in stylesheet ou
 
 ```vue
 <template>
-  <div class="app">
+  <div id="app">
     <header>
       <h1>Demo</h1>
     </header>
@@ -29,16 +29,14 @@ Make sure you sanitize all user-supplied input that is included in stylesheet ou
 </template>
 
 <script>
-import DynamicStylesheet from '@macu/dynamic-stylesheet-vue';
+// Auto-registers dynamic-stylesheet component
+import '@macu/dynamic-stylesheet-vue';
 
 export default {
-  components: {
-    DynamicStylesheet,
-  },
   computed: {
     styleRules() {
       return {
-        '.app': {
+        '#app': {
           '>header': {
             'padding': '10px 0',
             'background-color': 'pink',
@@ -61,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss">
-.app {
+#app {
   >header {
     margin-bottom: 20px;
   }
@@ -73,17 +71,17 @@ Rendered stylesheet:
 
 ```css
 <style type="text/css">
-.app>header {
+#app>header {
 	padding: 10px 0;
 	background-color: pink;
 }
-.app>header>h1 {
+#app>header>h1 {
 	color: red;
 }
-.app p {
+#app p {
 	color: blue;
 }
-.app p.demo {
+#app p.demo {
 	/* comments appear in innerHTML output */
 	font-weight: bold;
 }

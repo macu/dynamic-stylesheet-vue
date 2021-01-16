@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {addStylesheetRules, buildStylesheetCSS} from './dynamic-stylesheet.js';
+import {appendStylesheet} from '@macu/dynamic-stylesheet-js/index.js';
 
 export default {
 	props: {
@@ -17,6 +17,9 @@ export default {
 				this.recreateSheet();
 			},
 		},
+		innerMarkupOutput() {
+			this.recreateSheet();
+		},
 	},
 	mounted() {
 		this.recreateSheet();
@@ -26,33 +29,17 @@ export default {
 	},
 	methods: {
 		recreateSheet() {
-			// use stylesheet API if available,
-			// otherwise create a new sheet using innerHTML
-
-			if (this.$stylesheet) {
-				this.$el.removeChild(this.$stylesheet);
-				this.$stylesheet = null;
-			}
+			this.removeSheet();
 
 			if (!this.rules) {
 				return;
 			}
 
-			let style = document.createElement('style');
-			style.type = 'text/css';
-
-			this.$el.appendChild(style);
-			this.$stylesheet = style;
-
-			if ((style.styleSheet || style.sheet) && !this.innerMarkupOutput) {
-				addStylesheetRules(style, this.rules);
-			} else {
-				style.innerHTML = buildStylesheetCSS(this.rules);
-			}
+			this.$stylesheet = appendStylesheet(this.$el, this.rules, this.innerMarkupOutput);
 		},
 		removeSheet() {
 			if (this.$stylesheet) {
-				this.$el.removeChild(this.$stylesheet);
+				this.$stylesheet.parentNode.removeChild(this.$stylesheet);
 				this.$stylesheet = null;
 			}
 		},

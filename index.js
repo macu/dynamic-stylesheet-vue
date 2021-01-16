@@ -1,4 +1,8 @@
-export {addStylesheetRules, buildStylesheetCSS} from './dynamic-stylesheet.js';;
+export {
+	addStylesheetRules,
+	buildStylesheetCSS,
+	appendStylesheet,
+} from '@macu/dynamic-stylesheet-js/index.js';
 
 import DynamicStylesheet from './dynamic-stylesheet.vue';
 export default DynamicStylesheet;
