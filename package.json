@@ -38,6 +38,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "@macu/dynamic-stylesheet-js": "^1.0.0"
+    "@macu/dynamic-stylesheet-js": "^1.0.1"
   }
 }
